@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-slate-100 font-sans antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99, 102, 241, 0.18), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(34, 211, 238, 0.12), transparent),
+    radial-gradient(ellipse 70% 60% at 50% 120%, rgba(168, 85, 247, 0.14), transparent);
+  background-attachment: fixed;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-ink-900/70 backdrop-blur-md;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold transition
+      disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-glow hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/5 text-slate-100 hover:bg-white/10;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-lg border px-2.5 py-1 font-mono text-sm;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+  .kicker {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-cyan-300/80;
+  }
+}
+
+/* Thin scrollbars that fit the dark theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}

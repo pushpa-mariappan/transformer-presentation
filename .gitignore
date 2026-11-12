@@ -1,0 +1,5 @@
+.env
+# Python projects
+.venv/
+# JavaScript projects
+node_modules/
