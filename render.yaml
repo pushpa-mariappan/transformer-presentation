@@ -1,0 +1,19 @@
+# Render Blueprint – https://render.com/docs/blueprint-spec
+# Deploys the live Transformer presentation as one Docker web service
+# (FastAPI serves the API, the WebSocket endpoint and the built React app).
+services:
+  - type: web
+    name: transformer-presentation
+    runtime: docker
+    dockerfilePath: ./transformer-presentation/Dockerfile
+    dockerContext: ./transformer-presentation
+    plan: free
+    # region: frankfurt   # optional – pick the region closest to your audience (default: oregon)
+    healthCheckPath: /api/health
+    # Only redeploy when the presentation changes (not banking-risk-api etc.)
+    buildFilter:
+      paths:
+        - transformer-presentation/**
+    envVars:
+      - key: PRESENTER_KEY
+        sync: false # Render asks you for the value when you create the Blueprint

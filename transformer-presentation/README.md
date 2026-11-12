@@ -121,6 +121,20 @@ PRESENTER_KEY=your-secret uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 FastAPI now serves the built UI, the API and the WebSocket at `http://<host>:8000`.
 
+### Render (recommended hosted option)
+
+The repo root contains a `render.yaml` Blueprint that builds `transformer-presentation/Dockerfile` as one web service.
+
+1. Push to GitHub, then in Render choose **New → Blueprint** and select the repository.
+2. Enter a value for `PRESENTER_KEY` when prompted, then click **Apply**. The first build takes about 3–5 minutes.
+3. Open `https://<service-name>.onrender.com/presenter`. Participants join at the root URL.
+
+Render free-plan caveats:
+- The service **sleeps after ~15 minutes without traffic**, and the next visit takes ~1 minute to wake it. Open the site
+  a few minutes before your session to wake it up.
+- The filesystem is **ephemeral**, so participants and scores are lost on every redeploy or restart. That's fine for a
+  single live session. To keep data, use a paid plan, attach a persistent disk at `/data`, and leave `DB_PATH=/data/presentation.db`.
+
 Or with Docker:
 
 ```bash
